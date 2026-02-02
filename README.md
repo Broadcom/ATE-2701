@@ -1,34 +1,33 @@
-# HOL-8805 - VCF Single Site Lab
+# ATE-2701 - VCF 9.0.1 Single Site Lab
 
-## HOLFY27 VPodRepo Example Template
+## HOLFY27 VPodRepo Format
 
 ## Overview
 
-This is an example vpodrepo structure for a VCF Single Site lab in the
-HOLFY27 (FY2027) format. Use this as a template for creating new HOL-27xx
+This is an initial vpodrepo structure for a VCF Single Site lab in the
+HOLFY27 (FY2027) format. Use this as a template for creating new ATE-27xx
 lab repositories.
 
 ## Directory Structure
 
 ```plain
-HOLFY27-8805/
+ATE-2701/
 ├── config.ini              # Lab configuration (required)
 ├── README.txt              # This file (required)
-├── new-dns-records.csv     # Custom DNS records (optional)
 ├── holorouter/             # Router configuration overrides
 │   ├── allowlist           # Additional allowed domains
 │   ├── iptablescfg.sh      # Custom firewall rules (optional)
 │   └── startlist           # Startup-only allowed domains
 ├── Startup/                # Startup module overrides
-│   ├── prelim.py           # Override core prelim module
-│   └── VCFfinal.py         # Override core VCFfinal module
+│   ├── prelim.py           # Override core prelim module (optional)
+│   └── VCFfinal.py         # Override core VCFfinal module (optional)
 ├── scripts/                # Custom scripts
-│   ├── setup-demo.sh       # Example bash script
-│   └── configure-app.py    # Example Python script
+│   ├── setup-demo.sh       # Example bash script (optional)
+│   └── configure-app.py    # Example Python script (optional)
 ├── ansible/                # Ansible playbooks (optional)
-│   └── configure.yml       # Example playbook
+│   └── configure.yml       # Example playbook (optional)
 └── salt/                   # Salt states (optional)
-    └── config.sls          # Example salt state
+    └── config.sls          # Example salt state (optional)
 ```
 
 ## Configuration
@@ -37,7 +36,7 @@ HOLFY27-8805/
 
 The `config.ini` file defines lab parameters:
 
-- **[VPOD]**: Core settings (SKU, labtype, timeouts)
+- **[VPOD]**: Core settings (SKU, labtype [should set to ATE], timeouts, conky title)
 - **[RESOURCES]**: Components to verify (hosts, VMs, services)
 - **[VCF]**: VCF-specific component names
 - **[VCFFINAL]**: Post-startup tasks
@@ -73,35 +72,6 @@ Files in `holorouter/`:
 - **allowlist**: Additional domains to allow through proxy (merged with core)
 - **startlist**: Domains needed only during startup (temporary access)
 - **iptablescfg.sh**: Custom firewall rules (replaces core rules)
-
-### Custom DNS Records
-
-Create `new-dns-records.csv` to add DNS records via tdns-mgr:
-
-```csv
-zone,hostname,type,value
-site-a.vcf.lab,gitlab,A,10.1.10.50
-site-a.vcf.lab,git,CNAME,gitlab.site-a.vcf.lab
-```
-
-## Git Repository Setup Core Team
-
-1. Create repository: `https://github.com/Broadcom/HOL-2705.git`
-
-2. Clone structure:
-
-   ```bash
-   git clone https://github.com/Broadcom/HOL-2705.git
-   cd HOL-2705
-   cp -r /path/to/HOLFY27-8805/* .
-   git add .
-   git commit -m "Initial HOL-2705 setup"
-   git push
-   ```
-
-3. Create branches:
-   - `main`: Production use
-   - `dev`: Development/testing
 
 ## Testing
 
