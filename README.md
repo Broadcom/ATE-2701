@@ -1,4 +1,4 @@
-# ATE-2701 - BASE ATE Labs REPO - DO NOT MAKE CHANGES TO THIS REPO or USE it for labs work
+# ATE-2701 - BASE ATE Labs REPO - DO NOT MAKE CHANGES TO THIS REPO or USE it for lab work
 # Use another 
 
 ## HOLFY27 VPodRepo Format
